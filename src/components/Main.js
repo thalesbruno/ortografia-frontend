@@ -2,11 +2,13 @@ import React from 'react'
 import api from '../services/api'
 import './Main.css'
 
+
 class Main extends React.Component {
     state = {
         question: [],
-        value: ''
+        value: '',
     }
+
     handleChange = this.handleChange.bind(this)
     handleSubmit = this.handleSubmit.bind(this)
 
@@ -15,8 +17,14 @@ class Main extends React.Component {
     }
 
     showQuestion = async () => {
-        const response = await api.get('/questoes/1/')
-        this.setState({ question: response.data.palavras })
+        let questions_list = []
+        const response1 = await api.get('/questoes/')
+        response1.data.map( question => questions_list.push(question.id) )
+
+        let random_id = questions_list[Math.floor(Math.random() * questions_list.length)]
+
+        const response2 = await api.get(`/questoes/${random_id}/`)
+        this.setState({ question: response2.data.palavras })
     }
 
     handleChange(event) {
@@ -29,12 +37,14 @@ class Main extends React.Component {
 
     render() {
         const { question } = this.state
+        // console.log(this.state)
+
 
         return (
             <div className="question-body">
                 <form onSubmit={this.handleSubmit}>
                     {question.map( palavra => (
-                        <p><label key={palavra.id}>
+                        <p key={palavra.id}><label>
                             <input type="radio" name="palavra" value={palavra.is_correct} onChange={this.handleChange}/>
                             {palavra.nome}
                         </label></p>
