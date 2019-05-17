@@ -1,6 +1,6 @@
 import React from 'react'
 import api from '../services/api'
-import './Main.css'
+import './Main.scss'
 
 
 class Main extends React.Component {
@@ -42,14 +42,15 @@ class Main extends React.Component {
 
         return (
             <div className="question-body">
-                <form onSubmit={this.handleSubmit}>
+                <form className="question-form" onSubmit={this.handleSubmit}>
                     {question.map( palavra => (
-                        <p key={palavra.id}><label>
-                            <input type="radio" name="palavra" value={palavra.is_correct} onChange={this.handleChange}/>
+                        <label className="question-label" key={palavra.id}>
+                            <input className="question-input" type="radio" name="palavra" value={palavra.is_correct} onChange={this.handleChange} />
+                            <span className="checkmark"></span>
                             {palavra.nome}
-                        </label></p>
+                        </label>
                     ))}
-                    <input type="submit" value="Confirmar" />
+                        <input className="question-submit" type="submit" value="Confirmar" />
                 </form>
             </div>
         )
