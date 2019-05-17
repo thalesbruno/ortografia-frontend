@@ -11,3 +11,14 @@
     height: 2em;
     border-radius: 5px;
 }
+
+.app-footer a, a:active {
+    margin-left: 5px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.app-footer a:hover {
+    color: rgb(202, 198, 198);
+    text-decoration: none;
+}

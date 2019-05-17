@@ -36,7 +36,7 @@ question-body {
     position: absolute;
     top: 0;
     left: 0;
-    height: 45px;
+    height: 1.4em;
     width: 100%;
     background-color: #eee;
     border-radius: 5px;
@@ -50,3 +50,7 @@ question-body {
   .question-label input:checked ~ .checkmark {
     background: $background-color;
   }
+
+.question-submit {
+    margin-top: 1.5em;
+}
